@@ -10,7 +10,9 @@ const App = () => {
             const response = await fetch(url);
             const data = await response.json();
             setQuotes(data.quotes);
-            setQuote(data.quotes[Math.floor(Math.random() * quotes.length)]);
+            if (data.quotes.length > 0) {
+                setQuote(data.quotes[Math.floor(Math.random() * data.quotes.length)]);
+            }
         }
         getQuotes();
     }, []);
@@ -20,21 +22,19 @@ const App = () => {
         setQuote(quotes[randomIndex]);
     }
 
-    return (
-        <main>
-            <div id='quote-box'>
-                <h1 id='text'>{quote.quote}</h1>
-                <p id='author'>{quote.author}</p>
-                <div id={"buttons"}>
+    return (<main>
+        <div id='quote-box'>
+            <h1 id='text'>{quote.quote}</h1>
+            <p id='author'>{quote.author}</p>
+            <div id={"buttons"}>
                 <button id='new-quote' onClick={randomQuote}>Change</button>
-                    <div id={"tweeter"}>
-                        <i className="fa-brands fa-twitter"></i>
-                        <a href={"twitter.com/intent/tweet"} id={'tweet-quote'}>Tweet</a>
-                    </div>
+                <div id={"tweeter"}>
+                    <i className="fa-brands fa-twitter"></i>
+                    <a href={"twitter.com/intent/tweet"} id={'tweet-quote'}>Tweet</a>
                 </div>
             </div>
-        </main>
-    )
+        </div>
+    </main>)
 }
 
 export default App;
