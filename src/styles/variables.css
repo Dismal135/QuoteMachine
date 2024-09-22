@@ -1,0 +1,18 @@
+:root {
+    --night-building-color1: #000;
+    --night-building-color2: #000;
+    --night-building-color3: #000;
+    --night-building-color4: #000;
+    --night-window-color1: #777;
+    --night-window-color2: #777;
+    --night-window-color3: #777;
+    --night-window-color4: #777;
+    --day-building-color1: #aa80ff;
+    --day-building-color2: #66cc99;
+    --day-building-color3: #cc6699;
+    --day-building-color4: #538cc6;
+    --day-window-color1: #bb99ff;
+    --day-window-color2: #8cd9b3;
+    --day-window-color3: #d98cb3;
+    --day-window-color4: #8cb3d9;
+}

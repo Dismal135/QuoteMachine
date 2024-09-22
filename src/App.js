@@ -1,37 +1,34 @@
 import './App.css';
+import './styles/variables.css'
+import CitySkyline from "./components/CitySkyline/CitySkyline";
+import Clock from "./components/Clock/Clock";
+import RandomQuote from "./components/RandomQuote/RandomQuote";
 import {useEffect, useState} from "react";
 
 const App = () => {
-    const [quotes, setQuotes] = useState([]);
-    const [quote, setQuote] = useState({quote: '', author: ''});
-    const url = 'https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json';
+    const [isDay, setIsDay] = useState(false);
+    const [time, setTime] = useState('');
+
     useEffect(() => {
-        const getQuotes = async () => {
-            const response = await fetch(url);
-            const data = await response.json();
-            setQuotes(data.quotes);
-            if (data.quotes.length > 0) {
-                setQuote(data.quotes[Math.floor(Math.random() * data.quotes.length)]);
-            }
-        }
-        getQuotes();
+        const updateDateTime = () => {
+            const date = new Date();
+            setTime(date.toLocaleTimeString());
+
+            const hour = date.getHours();
+            setIsDay(hour >= 6 && hour < 24); // Day: 6 AM to 6 PM
+        };
+
+        updateDateTime(); // Set initial time and theme
+        const intervalId = setInterval(updateDateTime, 1000); // Update every second
+
+        return () => clearInterval(intervalId); // Cleanup on unmount
     }, []);
 
-    const randomQuote = () => {
-        const randomIndex = Math.floor(Math.random() * quotes.length);
-        setQuote(quotes[randomIndex]);
-    }
-
-    return (<main>
-        <div className='quote-box'>
-            <h1 className='quote'>"{quote.quote}"</h1>
-            <p className='author'>-{quote.author}</p>
-            <div className={"buttons"}>
-                <button className='new-quote' onClick={randomQuote}>New quote</button>
-                    <a href={"https://x.com/?lang=en"} className={'tweet-quote'}><i className="fa-brands fa-twitter"></i>Tweet</a>
-            </div>
-        </div>
-    </main>)
+    return <>
+        <CitySkyline isDay={isDay}/>
+        <Clock time={time}/>
+        <RandomQuote />
+    </>
 }
 
 export default App;
