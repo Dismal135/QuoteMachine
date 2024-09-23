@@ -6,7 +6,46 @@
     justify-content: center;
     text-align: center;
     height: 100vh;
-    z-index: 100;
-    border: 1px solid black;
     width: 100%;
+    z-index: 100;
+    border: 1px solid black; /* Optional: consider a lighter color for a cleaner look */
+    padding: 20px; /* Optional: Add padding for spacing */
+}
+
+.quote-box {
+    /* Optional: Add some styling to the quote box */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners for a softer look */
+    /* You can add borders or shadows here if desired */
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem; /* Spacing between buttons */
+}
+
+/* Optional: Style for buttons */
+.new-quote, .tweet-quote {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.new-quote:hover {
+    background-color: #003366; /* Change to your preferred color */
+    color: #fff; /* White text on hover */
+}
+
+.tweet-quote {
+    display: flex; /* To align icon and text */
+    align-items: center;
+    color: inherit; /* Inherit text color */
+}
+
+.tweet-quote:hover {
+    color: #1da1f2; /* Twitter blue on hover */
 }
