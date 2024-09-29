@@ -51,10 +51,7 @@ const App = () => {
     return <>
         <CitySkyline isDay={isDay}/>
         <Clock time={time}/>
-        {
-            loading ? <p>Loading Quote</p> : 
-            <RandomQuote quote={quote} randomQuote={randomQuote} isDay={isDay}/>
-        }
+        <RandomQuote loading={loading} quote={quote} randomQuote={randomQuote} isDay={isDay}/>
     </>
 }
 
