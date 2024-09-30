@@ -21,7 +21,11 @@ const App = () => {
             setQuotes(data.quotes);
             if (data.quotes.length > 0) {
                 setQuote(data.quotes[Math.floor(Math.random() * data.quotes.length)]);
-            }} finally {
+            }}
+            catch (error) {
+                throw new Error ("No internet to get Quote")
+            }
+             finally {
                 setLoading(false)
             }
         }
