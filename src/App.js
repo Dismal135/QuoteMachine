@@ -9,16 +9,19 @@ const App = () => {
     const [time, setTime] = useState('');
     const [quotes, setQuotes] = useState([]);
     const [quote, setQuote] = useState({quote: '', author: ''});
+    const [loading, setLoading] = useState(false);
     const url = 'https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json';
 
 
     useEffect(() => {
         const getQuotes = async () => {
+            setLoading(true);
             const response = await fetch(url);
             const data = await response.json();
             setQuotes(data.quotes);
             if (data.quotes.length > 0) {
                 setQuote(data.quotes[Math.floor(Math.random() * data.quotes.length)]);
+                setLoading(false)
             }
         }
         getQuotes();
@@ -47,7 +50,7 @@ const App = () => {
     return <>
         <CitySkyline isDay={isDay}/>
         <Clock time={time}/>
-        <RandomQuote quote={quote} randomQuote={randomQuote} isDay={isDay}/>
+        <RandomQuote loading={loading} quote={quote} randomQuote={randomQuote} isDay={isDay}/>
     </>
 }
 
